@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DequeLibrary
 {
-    public class Deque<T>
+    public class Deque<T> : IEnumerable<T>
     {
         private class Node
         {
@@ -94,6 +94,27 @@ namespace DequeLibrary
             }
             Count--;
             return value;
+        }
+
+        public void Clear()
+        {
+            head = tail = null;
+            Count = 0;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var current = head;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
