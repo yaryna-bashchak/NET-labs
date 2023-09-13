@@ -110,6 +110,22 @@ namespace DequeLibrary
             return value;
         }
 
+        public bool Contains(T item)
+        {
+            var current = head;
+
+            while (current != null)
+            {
+                if (EqualityComparer<T>.Default.Equals(current.Value, item))
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
+        }
+
         public void Clear()
         {
             head = tail = null;
