@@ -22,6 +22,10 @@ namespace DequeLibrary
         private Node? tail;
         public int Count { get; private set; }
 
+        public event Action? CollectionCleared;
+        public event Action<T>? ElementAdded;
+        public event Action<T>? ElementRemoved;
+
         public void AddFirst(T item)
         {
             var node = new Node(item);
@@ -36,6 +40,8 @@ namespace DequeLibrary
                 head = node;
             }
             Count++;
+
+            ElementAdded?.Invoke(item);
         }
 
         public void AddLast(T item)
@@ -52,6 +58,8 @@ namespace DequeLibrary
                 tail = node;
             }
             Count++;
+
+            ElementAdded?.Invoke(item);
         }
 
         public T RemoveFirst()
@@ -72,6 +80,8 @@ namespace DequeLibrary
                 tail = null;
             }
             Count--;
+
+            ElementRemoved?.Invoke(value);
             return value;
         }
 
@@ -84,6 +94,7 @@ namespace DequeLibrary
 
             T value = tail.Value;
             tail = tail.Prev;
+
             if (tail != null)
             {
                 tail.Next = null;
@@ -92,7 +103,10 @@ namespace DequeLibrary
             {
                 head = null;
             }
+
             Count--;
+
+            ElementRemoved?.Invoke(value);
             return value;
         }
 
@@ -100,6 +114,7 @@ namespace DequeLibrary
         {
             head = tail = null;
             Count = 0;
+            CollectionCleared?.Invoke();
         }
 
         public IEnumerator<T> GetEnumerator()

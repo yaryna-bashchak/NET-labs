@@ -7,6 +7,9 @@ namespace DequeApp
         static void Main(string[] args)
         {
             var deque = new Deque<int>();
+            deque.CollectionCleared += () => Console.WriteLine("Collection cleared");
+            deque.ElementAdded += item => Console.WriteLine($"Element {item} added");
+            deque.ElementRemoved += item => Console.WriteLine($"Element {item} removed");
             
             deque.AddFirst(1);
             deque.AddFirst(2);
@@ -25,6 +28,7 @@ namespace DequeApp
             {
                 Console.WriteLine(item);
             }
+
         }
     }
 }
