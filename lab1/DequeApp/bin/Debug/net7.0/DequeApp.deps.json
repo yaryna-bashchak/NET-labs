@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "DequeApp/1.0.0": {
+        "dependencies": {
+          "DequeLibrary": "1.0.0"
+        },
+        "runtime": {
+          "DequeApp.dll": {}
+        }
+      },
+      "DequeLibrary/1.0.0": {
+        "runtime": {
+          "DequeLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DequeApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DequeLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
