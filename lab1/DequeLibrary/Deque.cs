@@ -130,6 +130,37 @@ namespace DequeLibrary
             return value;
         }
 
+        public void CopyTo(T[] array, int index)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException(nameof(array));
+            }
+
+            if (index < 0 || index >= array.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range");
+            }
+
+            if (array.Length - index < Count)
+            {
+                throw new ArgumentException("Deque size is bigger than array length");
+            }
+
+            var current = head;
+            int currentIndex = index;
+
+            while (current != null)
+            {
+                if (currentIndex >= array.Length) break;
+
+                array[currentIndex] = current.Value;
+
+                current = current.Next;
+                currentIndex++;
+            }
+        }
+
         public bool TryRemoveFirst(out T? item)
         {
             if (head == null)
