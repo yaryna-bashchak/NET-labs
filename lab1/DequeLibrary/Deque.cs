@@ -26,6 +26,26 @@ namespace DequeLibrary
         public event Action<T>? ElementAdded;
         public event Action<T>? ElementRemoved;
 
+        public Deque()
+        {
+            head = null;
+            tail = null;
+            Count = 0;
+        }
+
+        public Deque(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            foreach (var item in collection)
+            {
+                AddLast(item);
+            }
+        }
+
         public void AddFirst(T item)
         {
             var node = new Node(item);
