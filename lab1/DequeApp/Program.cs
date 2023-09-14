@@ -21,14 +21,22 @@ namespace DequeApp
                 Console.WriteLine(item);
             }
 
-            deque.RemoveFirst();
-            deque.RemoveLast();
+            try
+            {
+                deque.RemoveFirst();
+                deque.RemoveLast();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             foreach (var item in deque)
             {
                 Console.WriteLine(item);
             }
 
+            deque.Clear();
         }
     }
 }

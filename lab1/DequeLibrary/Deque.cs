@@ -66,7 +66,7 @@ namespace DequeLibrary
         {
             if (head == null)
             {
-                throw new InvalidOperationException("Deque is empty");
+                throw new InvalidOperationException("Error: you are trying to remove first when deque is empty");
             }
 
             T value = head.Value;
@@ -89,7 +89,7 @@ namespace DequeLibrary
         {
             if (tail == null)
             {
-                throw new InvalidOperationException("Deque is empty");
+                throw new InvalidOperationException("Error: you are trying to remove last when deque is empty");
             }
 
             T value = tail.Value;
