@@ -6,24 +6,40 @@ namespace DequeApp
     {
         static void Main(string[] args)
         {
-            var deque = new Deque<int>();
-            deque.CollectionCleared += () => Console.WriteLine("Collection cleared");
-            deque.ElementAdded += item => Console.WriteLine($"Element {item} added");
-            deque.ElementRemoved += item => Console.WriteLine($"Element {item} removed");
-            
-            deque.AddFirst(1);
-            deque.AddFirst(2);
-            deque.AddLast(3);
-            deque.AddLast(4);
+            var deque = new Deque<string>(new string[] {"world,", "I"});
 
-            foreach (var item in deque)
-            {
-                Console.WriteLine(item);
-            }
+            deque.CollectionCleared += () => Console.WriteLine("Collection cleared");
+            deque.ElementAdded += item => Console.WriteLine($"Element \"{item}\" added");
+            deque.ElementRemoved += item => Console.WriteLine($"Element \"{item}\" removed");
+            deque.CollectionBecameEmpty += () => Console.WriteLine("Collection became empty");
+            deque.CollectionCopied += () => Console.WriteLine("Collection was copied");
+
+            deque.AddLast("am");
+            deque.AddLast("deque!");
+            deque.AddFirst("Hello");
+
+            deque.Print();
 
             try
             {
                 deque.RemoveFirst();
+                deque.RemoveLast();
+                Console.WriteLine($"First element: {deque.PeekFirst()}");
+                Console.WriteLine($"Last element: {deque.PeekLast()}");
+
+                var array = new string[6];
+                deque.CopyTo(array, 2);
+                deque.CopyTo(array, 5);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            deque.Clear();
+
+            try
+            {
                 deque.RemoveLast();
             }
             catch (Exception ex)
@@ -31,12 +47,8 @@ namespace DequeApp
                 Console.WriteLine(ex.Message);
             }
 
-            foreach (var item in deque)
-            {
-                Console.WriteLine(item);
-            }
-
-            deque.Clear();
+            deque.AddFirst("Bye");
+            deque.RemoveLast();
         }
     }
 }
