@@ -134,6 +134,54 @@ namespace DequeLibrary
             return true;
         }
 
+        public T PeekFirst()
+        {
+            if (head == null)
+            {
+                throw new InvalidOperationException("Error: you are trying to peek first when deque is empty");
+            }
+
+            T value = head.Value;
+
+            return value;
+        }
+
+        public T PeekLast()
+        {
+            if (tail == null)
+            {
+                throw new InvalidOperationException("Error: you are trying to peek last when deque is empty");
+            }
+
+            T value = tail.Value;
+
+            return value;
+        }
+
+        public bool TryPeekFirst(out T? item)
+        {
+            if (head == null)
+            {
+                item = default;
+                return false;
+            }
+
+            item = head.Value;
+            return true;
+        }
+
+        public bool TryPeekLast(out T? item)
+        {
+            if (tail == null)
+            {
+                item = default;
+                return false;
+            }
+
+            item = tail.Value;
+            return true;
+        }
+
         public bool Contains(T item)
         {
             var current = head;
