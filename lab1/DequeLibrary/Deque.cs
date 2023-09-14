@@ -110,6 +110,30 @@ namespace DequeLibrary
             return value;
         }
 
+        public bool TryRemoveFirst(out T? item)
+        {
+            if (head == null)
+            {
+                item = default;
+                return false;
+            }
+
+            item = RemoveFirst();
+            return true;
+        }
+
+        public bool TryRemoveLast(out T? item)
+        {
+            if (tail == null)
+            {
+                item = default;
+                return false;
+            }
+
+            item = RemoveLast();
+            return true;
+        }
+
         public bool Contains(T item)
         {
             var current = head;
