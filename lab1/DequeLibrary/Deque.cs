@@ -23,6 +23,7 @@ namespace DequeLibrary
         public int Count { get; private set; }
 
         public event Action? CollectionCleared;
+        public event Action? CollectionBecameEmpty;
         public event Action<T>? ElementAdded;
         public event Action<T>? ElementRemoved;
 
@@ -98,6 +99,7 @@ namespace DequeLibrary
             else
             {
                 tail = null;
+                CollectionBecameEmpty?.Invoke();
             }
             Count--;
 
@@ -122,6 +124,7 @@ namespace DequeLibrary
             else
             {
                 head = null;
+                CollectionBecameEmpty?.Invoke();
             }
 
             Count--;
