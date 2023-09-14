@@ -26,6 +26,7 @@ namespace DequeLibrary
         public event Action? CollectionBecameEmpty;
         public event Action<T>? ElementAdded;
         public event Action<T>? ElementRemoved;
+        public event Action? CollectionCopied;
 
         public Deque()
         {
@@ -92,6 +93,10 @@ namespace DequeLibrary
 
             T value = head.Value;
             head = head.Next;
+
+            Count--;
+            ElementRemoved?.Invoke(value);
+
             if (head != null)
             {
                 head.Prev = null;
@@ -101,9 +106,7 @@ namespace DequeLibrary
                 tail = null;
                 CollectionBecameEmpty?.Invoke();
             }
-            Count--;
 
-            ElementRemoved?.Invoke(value);
             return value;
         }
 
@@ -117,6 +120,9 @@ namespace DequeLibrary
             T value = tail.Value;
             tail = tail.Prev;
 
+            Count--;
+            ElementRemoved?.Invoke(value);
+
             if (tail != null)
             {
                 tail.Next = null;
@@ -127,13 +133,10 @@ namespace DequeLibrary
                 CollectionBecameEmpty?.Invoke();
             }
 
-            Count--;
-
-            ElementRemoved?.Invoke(value);
             return value;
         }
 
-        public void CopyTo(T[] array, int index)
+        public void CopyTo(T[] array, int index = 0)
         {
             if (array == null)
             {
@@ -162,6 +165,8 @@ namespace DequeLibrary
                 current = current.Next;
                 currentIndex++;
             }
+
+            CollectionCopied?.Invoke();
         }
 
         public bool TryRemoveFirst(out T? item)
@@ -257,6 +262,7 @@ namespace DequeLibrary
             head = tail = null;
             Count = 0;
             CollectionCleared?.Invoke();
+            CollectionBecameEmpty?.Invoke();
         }
 
         public IEnumerator<T> GetEnumerator()
