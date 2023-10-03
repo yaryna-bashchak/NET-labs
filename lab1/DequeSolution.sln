@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DequeLibrary", "DequeLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DequeApp", "DequeApp\DequeApp.csproj", "{FC6D62CC-ECE9-409E-A0F1-8F359545C7DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DequeLibrary.Tests", "DequeLibrary.Tests\DequeLibrary.Tests.csproj", "{9DD40394-EC13-467F-B205-644AFE239A97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{FC6D62CC-ECE9-409E-A0F1-8F359545C7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC6D62CC-ECE9-409E-A0F1-8F359545C7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC6D62CC-ECE9-409E-A0F1-8F359545C7DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD40394-EC13-467F-B205-644AFE239A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD40394-EC13-467F-B205-644AFE239A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD40394-EC13-467F-B205-644AFE239A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD40394-EC13-467F-B205-644AFE239A97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
