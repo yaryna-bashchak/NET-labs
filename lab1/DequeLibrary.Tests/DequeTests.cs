@@ -20,7 +20,7 @@ public class DequeTests
     [Test]
     public void AddFirst_NotEmptyDeque_AddsItemsToFront()
     {
-        var deque = new Deque<string>() { "abc", "def" };
+        var deque = new Deque<string>(new string[] { "abc", "def" });
         deque.AddFirst("ghi");
 
         Assert.That(deque.Count, Is.EqualTo(3));
@@ -42,7 +42,7 @@ public class DequeTests
     [Test]
     public void AddLast_NotEmptyDeque_AddsItemsToBack()
     {
-        var deque = new Deque<string>() { "abc", "def" };
+        var deque = new Deque<string>(new string[] { "abc", "def" });
         deque.AddLast("ghi");
 
         Assert.That(deque.Count, Is.EqualTo(3));
@@ -52,7 +52,7 @@ public class DequeTests
     [Test]
     public void RemoveFirst_NotEmptyDeque_RemovesItemsFromFront()
     {
-        var deque = new Deque<string>() { "abc", "def", "ghi" };
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
 
         var first1 = deque.RemoveFirst();
         var first2 = deque.RemoveFirst();
@@ -65,7 +65,7 @@ public class DequeTests
     [Test]
     public void RemoveFirst_OneItemInDeque_RemovesLastItemInDeque()
     {
-        var deque = new Deque<string>() { "abc" };
+        var deque = new Deque<string>(new string[] { "abc" });
 
         var last = deque.RemoveFirst();
 
@@ -76,7 +76,7 @@ public class DequeTests
     [Test]
     public void RemoveFirst_EmptyDeque_ThrowExeption()
     {
-        var deque = new Deque<int>();
+        var deque = new Deque<string>();
 
         Assert.Throws<InvalidOperationException>(() => deque.RemoveFirst());
     }
@@ -84,7 +84,7 @@ public class DequeTests
     [Test]
     public void RemoveLast_NotEmptyDeque_RemovesItemsFromBack()
     {
-        var deque = new Deque<string>() { "abc", "def", "ghi" };
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
 
         var last1 = deque.RemoveLast();
         var last2 = deque.RemoveLast();
@@ -97,7 +97,7 @@ public class DequeTests
     [Test]
     public void RemoveLast_OneItemInDeque_RemovesLastItemInDeque()
     {
-        var deque = new Deque<string>() { "abc" };
+        var deque = new Deque<string>(new string[] { "abc" });
 
         var last = deque.RemoveLast();
 
