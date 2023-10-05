@@ -185,6 +185,89 @@ public class DequeTests
         Assert.That(result, Is.EqualTo(false));
     }
 
-        Assert.Throws<InvalidOperationException>(() => deque.RemoveLast());
+    [Test]
+    public void PeekFirst_NotEmptyDeque_ReturnsItemFromFront()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        var first = deque.PeekFirst();
+
+        Assert.That(deque.Count, Is.EqualTo(3));
+        Assert.That(first, Is.EqualTo("abc"));
+    }
+
+    [Test]
+    public void PeekFirst_EmptyDeque_ThrowExeption()
+    {
+        var deque = new Deque<string>();
+
+        Assert.Throws<InvalidOperationException>(() => deque.PeekFirst());
+    }
+
+    [Test]
+    public void PeekLast_NotEmptyDeque_ReturnsItemFromBack()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        var last = deque.PeekLast();
+
+        Assert.That(deque.Count, Is.EqualTo(3));
+        Assert.That(last, Is.EqualTo("ghi"));
+    }
+
+    [Test]
+    public void PeekLast_EmptyDeque_ThrowExeption()
+    {
+        var deque = new Deque<string>();
+
+        Assert.Throws<InvalidOperationException>(() => deque.PeekLast());
+    }
+
+    [Test]
+    public void TryPeekFirst_NotEmptyDeque_ReturnsTrueAndFirstItem()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        var result = deque.TryPeekFirst(out string? first);
+
+        Assert.That(deque.Count, Is.EqualTo(3));
+        Assert.That(first, Is.EqualTo("abc"));
+        Assert.That(result, Is.EqualTo(true));
+    }
+
+    [Test]
+    public void TryPeekFirst_EmptyDeque_ReturnsFalseAndDefaultItem()
+    {
+        var deque = new Deque<string>();
+
+        var result = deque.TryPeekFirst(out string? first);
+
+        Assert.That(deque.Count, Is.EqualTo(0));
+        Assert.That(first, Is.EqualTo(default));
+        Assert.That(result, Is.EqualTo(false));
+    }
+
+    [Test]
+    public void TryPeekLast_NotEmptyDeque_ReturnsTrueAndLastItem()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        var result = deque.TryPeekLast(out string? last);
+
+        Assert.That(deque.Count, Is.EqualTo(3));
+        Assert.That(last, Is.EqualTo("ghi"));
+        Assert.That(result, Is.EqualTo(true));
+    }
+
+    [Test]
+    public void TryPeekLast_EmptyDeque_ReturnsFalseAndDefaultItem()
+    {
+        var deque = new Deque<string>();
+
+        var result = deque.TryPeekLast(out string? last);
+
+        Assert.That(deque.Count, Is.EqualTo(0));
+        Assert.That(last, Is.EqualTo(default));
+        Assert.That(result, Is.EqualTo(false));
     }
 }
