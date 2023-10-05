@@ -309,7 +309,7 @@ public class DequeTests
     [Test]
     public void CopyTo_CopiesItemsCorrectly()
     {
-        var deque = new Deque<string>(new string[] {"abc", "def", "ghi"});
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
         var array = new string[5];
 
         deque.CopyTo(array, 1);
@@ -319,5 +319,57 @@ public class DequeTests
         Assert.That(array[2], Is.EqualTo("def"));
         Assert.That(array[3], Is.EqualTo("ghi"));
         Assert.That(array[4], Is.EqualTo(default));
+    }
+
+    [Test]
+    public void Contains_DequeIsEmpty_ReturnsFalse()
+    {
+        var deque = new Deque<string>();
+
+        var result = deque.Contains("abc");
+
+        Assert.That(result, Is.False);
+    }
+
+    [Test]
+    public void Contains_DequeContainsItem_ReturnsTrue()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        var result = deque.Contains("def");
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void Contains_DequeDoesNotContainItem_ReturnsFalse()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        var result = deque.Contains("jkl");
+
+        Assert.That(result, Is.False);
+    }
+
+    [Test]
+    public void Clear_RemoveAllItems()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
+        deque.Clear();
+        var contains = deque.Contains("def");
+
+        Assert.That(deque.Count, Is.EqualTo(0));
+        Assert.That(contains, Is.False);
+    }
+
+    [Test]
+    public void Clear_DequeIsAlreadyEmpty_CountRemainsZero()
+    {
+        var deque = new Deque<string>();
+
+        deque.Clear();
+
+        Assert.That(deque.Count, Is.EqualTo(0));
     }
 }
