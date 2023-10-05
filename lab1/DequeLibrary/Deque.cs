@@ -279,14 +279,5 @@ namespace DequeLibrary
         {
             return GetEnumerator();
         }
-
-        public void Print()
-        {
-            foreach (var item in this)
-            {
-                Console.Write(item + " ");
-            }
-            Console.WriteLine();
-        }
     }
 }

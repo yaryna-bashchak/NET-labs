@@ -18,7 +18,7 @@ namespace DequeApp
             deque.AddLast("deque!");
             deque.AddFirst("Hello");
 
-            deque.Print();
+            Print(deque);
 
             try
             {
@@ -49,6 +49,15 @@ namespace DequeApp
 
             deque.AddFirst("Bye");
             deque.RemoveLast();
+        }
+
+        public static void Print(Deque<string> deque)
+        {
+            foreach (var item in deque)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
