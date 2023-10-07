@@ -1,4 +1,6 @@
-﻿namespace DequeLibrary.Tests;
+﻿using System.Collections;
+
+namespace DequeLibrary.Tests;
 
 [TestFixture]
 public class DequeGetEnumeratorTests
@@ -8,11 +10,7 @@ public class DequeGetEnumeratorTests
     {
         var deque = new Deque<string>();
 
-        var result = new List<string>();
-        foreach (var item in deque)
-        {
-            result.Add(item);
-        }
+        var result = deque.ToList();
 
         Assert.That(result, Is.Empty);
     }
@@ -22,10 +20,21 @@ public class DequeGetEnumeratorTests
     {
         var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
 
+        var result = deque.ToList();
+
+        var expected = new List<string> { "abc", "def", "ghi" };
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void NonGenericGetEnumerator_NotEmptyDeque_YieldsCorrectResult()
+    {
+        var deque = new Deque<string>(new string[] { "abc", "def", "ghi" });
+
         var result = new List<string>();
-        foreach (var item in deque)
+        foreach (var item in (IEnumerable)deque)
         {
-            result.Add(item);
+            result.Add((string)item);
         }
 
         var expected = new List<string> { "abc", "def", "ghi" };
