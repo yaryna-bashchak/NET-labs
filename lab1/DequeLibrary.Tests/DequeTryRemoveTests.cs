@@ -68,7 +68,7 @@ public class DequeTryRemoveTests
     {
         var deque = new Deque<string>();
 
-        var result = deque.TryRemoveFirst(out string? last);
+        var result = deque.TryRemoveLast(out string? last);
 
         Assert.That(deque.Count, Is.EqualTo(0));
         Assert.That(last, Is.EqualTo(default));

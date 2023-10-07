@@ -158,8 +158,6 @@ namespace DequeLibrary
 
             while (current != null)
             {
-                if (currentIndex >= array.Length) break;
-
                 array[currentIndex] = current.Value;
 
                 current = current.Next;
