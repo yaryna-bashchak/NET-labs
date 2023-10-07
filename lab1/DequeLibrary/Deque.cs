@@ -34,7 +34,7 @@ namespace DequeLibrary
             tail = null;
             Count = 0;
         }
-
+ 
         public Deque(IEnumerable<T> collection)
         {
             if (collection == null)
